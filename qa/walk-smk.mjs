@@ -6,7 +6,7 @@ await p.setViewport(MOB?{width:390,height:844,deviceScaleFactor:2,isMobile:true,
 const errs=[]; p.on('pageerror',e=>errs.push('pageerror: '+e.message.slice(0,110)));
 p.on('console',m=>{ if(m.type()==='error') errs.push('console: '+m.text().slice(0,110)); });
 const bad=[]; p.on('response',r=>{ if(r.status()>=400) bad.push(r.status()+' '+r.url().split('/').pop()); });
-await p.goto('http://localhost:8812/',{waitUntil:'load',timeout:45000});
+await p.goto(process.env.URL||'http://localhost:8812/',{waitUntil:'load',timeout:45000});
 await p.evaluate(()=>document.fonts.ready);
 await new Promise(r=>setTimeout(r,3800));
 const H = await p.evaluate(()=>document.documentElement.scrollHeight);

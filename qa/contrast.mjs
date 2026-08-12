@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer-core';
 const b=await puppeteer.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:'new',userDataDir:'/tmp/smk-c-'+Date.now(),args:['--no-first-run']});
 const p=await b.newPage(); await p.setViewport({width:1440,height:900});
-await p.goto('http://localhost:8812/',{waitUntil:'load'}); await p.evaluate(()=>document.fonts.ready);
+await p.goto(process.env.URL||'http://localhost:8812/',{waitUntil:'load'}); await p.evaluate(()=>document.fonts.ready);
 await new Promise(r=>setTimeout(r,3800));
 await p.evaluate(()=>{ // reveal everything so nothing is skipped for being mid-transition
   document.querySelectorAll('[class*=al-]').forEach(e=>e.classList.add('is-in'));

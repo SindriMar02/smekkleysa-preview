@@ -136,13 +136,39 @@ The 56 images reporting `naturalWidth === 0` are **not broken**: they are `.al-p
 images whose `src` is stashed in `data-src` by the roll's memory windowing, which is the
 fix for the 280MB-of-bitmap problem from the Alda build.
 
-## 7. Not done
+## 7. Deployed
 
-- Perf was not profiled on this build. The two most expensive things in the source build
-  (the video and its CSS filter) are gone, and the field is bands rather than a mosaic, so
-  it should be ahead — but that is reasoning, not a measurement. Run `qa/perf.mjs` and
-  `qa/recalc.mjs` before deploying.
-- Not deployed. `deploy.sh` points at `sindrimar02.github.io/smekkleysa-preview`.
+**Live at `https://sindrimar02.github.io/smekkleysa-preview/`** (2026-08-12), from the
+`gh-pages` branch of a repo created for this build. **Only `gh-pages` is pushed**, unlike
+the 12 Tónar repo which also publishes `main`: §5 of this file says out loud that two live
+client sites may be shipping a commercial font without a licence, and DESIGN.md/FACTS.md
+carry the internal read. A public repo under the client's own name is not the place for
+either. The source stays in the workspace.
+
+Verified on the DEPLOYED url, not on localhost:
+
+| gate | result |
+|---|---|
+| `robots` | `noindex, nofollow` in the head, `robots.txt` Disallow, canonical on the preview itself |
+| favicon, staged tree and live | guard OK, 3 icons live, 2 raster |
+| `qa/walk-smk.mjs` desktop + mobile | 0 page errors, 0 HTTP errors, 1 `<h1>`, no horizontal scroll |
+| `qa/lock.mjs` | 3/3 |
+| `qa/fit.mjs` | ALL CLEAN, 8 widths |
+| `qa/contrast.mjs` | nothing below AA |
+| `qa/touch.mjs` | 4/4, drag leak 0px, post-release peak 442px/s |
+
+`qa/landing-shot.mjs` shoots the outreach screenshot off the live url and **refuses to
+write a frame** unless `al-loading` and `al-intro` are both off, the hero stage is at
+opacity 1 and the wordmark canvas is at least 5% drawn. The opening reveal makes an early
+frame an outlined wordmark on a black field, which is the one image the email must not
+carry.
+
+## 8. Not done
+
+- Perf was not profiled with `qa/perf.mjs` / `qa/recalc.mjs`. What WAS measured is frame
+  cost under CPU x4 on all four sections, desktop and mobile: 60fps, p95 18.4ms, 0 frames
+  over 32ms (`qa/lagcheck.mjs`). The two most expensive things in the source build (the
+  video and its CSS filter) are gone.
 - `/review-animations` has not been run; that one is Sindri's to type.
 - The auction is mentioned in the timeline but does not have its own section, and it is
   the most distinctive thing they do.
