@@ -1,0 +1,12 @@
+{
+  "name": "smekkleysa-preview",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "harvest": "python3 tools/harvest.py",
+    "fetch": "python3 tools/fetch.py",
+    "assets": "python3 tools/assets.py",
+    "build": "node src/build.mjs",
+    "serve": "node server.mjs"
+  }
+}
