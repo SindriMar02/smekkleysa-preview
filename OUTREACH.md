@@ -1,6 +1,8 @@
 # Outreach draft · Smekkleysa SM
 
-**Status: DRAFT, NOT SENT.** Sending is Sindri's call.
+**Status: SENT 2026-08-24** by Sindri, to asi@smekkleysa.net with kiddi@smekkleysa.net in copy.
+Watch for a bounce: asi@ came from third-party listings, never from Smekkleysa's own site, and
+their Google Workspace already bounced shop@ once. A bounce means the outreach did not happen.
 
 - **To:** asi@smekkleysa.net
 - **Cc:** kiddi@smekkleysa.net
